@@ -1,0 +1,337 @@
+:root {
+  --bg-main: #fcfdfe;
+  --bg-sidebar: #ffffff;
+  --text-dark: #222222;
+  --text-light: #666666;
+  --primary: #1a1a1a;
+  --accent: #0052cc;
+  --border: #eaedff;
+  --radius-m: 14px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+  margin: 0; padding: 0;
+}
+
+.skip-link {
+  position: absolute; top: -50px; left: 0; background: var(--accent); color: #fff; padding: 10px; z-index: 1000; text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+.top-util-nav { display: flex; justify-content: flex-end; max-width: 1400px; margin: 0 auto; padding: 1rem 2rem 0; }
+.top-util-nav ul { display: flex; list-style: none; gap: 1.5rem; margin: 0; padding: 0; }
+.top-util-nav a { text-decoration: none; color: var(--text-light); font-size: 0.85rem; font-weight: 600; }
+
+.portfolio-container {
+  display: flex; flex-direction: column; max-width: 1400px; margin: 0 auto; padding: 2rem; gap: 2rem;
+}
+@media (min-width: 1024px) {
+  .portfolio-container { flex-direction: row; align-items: flex-start; padding-top:5rem}
+}
+
+/* 사이드바 고도화 */
+.sidebar-zone {
+  flex: 0 0 260px; background-color: var(--bg-sidebar); border: 1px solid var(--border); border-radius: var(--radius-m); padding: 2rem 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+.profile-card { text-align: center; margin-bottom: 1.5rem; }
+.profile-img-wrapper { margin: 0 auto 1rem; }
+.profile-img-wrapper{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 16px rgba(23, 43, 77, 0.12);
+  overflow: hidden;
+}
+.profile-avatar {
+  width:auto;
+  height:100%;
+  /* width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 16px rgba(23, 43, 77, 0.12); */
+}
+.profile-name { font-size: 1.4rem; font-weight: 800; margin: 0 0 0.4rem 0; }
+.profile-duty { font-size: 0.85rem; color: var(--text-light); margin: 0; font-weight: 600; }
+
+.sidebar-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+.sidebar-contact-item {
+  display: block;
+  padding: 0.50rem 1.1rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  word-break: break-all;
+}
+.sidebar-contact-item:hover {
+  background-color: #f1f3ff;
+  color: var(--accent);
+}
+
+.main-content-zone { flex: 1; display: flex; flex-direction: column; gap: 2.5rem; }
+
+/* 개요 헤더 영역 */
+.overview-section { display: flex; flex-direction: column; gap: 2rem; }
+@media (min-width: 768px) { .overview-section { flex-direction: row; } }
+.intro-box { flex: 1.3; }
+.intro-title { font-size: 1.6rem; font-weight: 800; line-height: 1.4; margin: 0 0 1rem 0; color: #172b4d; }
+.intro-desc { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; margin-bottom: 0; text-align: justify; }
+
+/* 프로그레스 스택 바 */
+.skill-chart-box { flex: 0.8; display: flex; flex-direction: column; gap: 1.1rem; background: #fff; padding: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius-m); justify-content: center;}
+.skill-label { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; }
+.progress-bar { background-color: #f0f2f5; height: 8px; border-radius: 4px; overflow: hidden; }
+.progress-fill {
+  background-color: var(--accent);
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skill-value { min-width: 2.5rem; text-align: right; color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill { transition: none; }
+}
+
+/* 6개 카드 반응형 완벽 배치 */
+.image-card-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem; }
+@media (min-width: 640px) { .image-card-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .image-card-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.thumb-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-m); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.25s, box-shadow 0.25s; cursor: pointer; }
+.thumb-card.hide { display: none; }
+.thumb-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,52,204,0.08); }
+
+.thumb-img-zone { height: 170px; position: relative; background-size: cover; background-position: center; display: flex; align-items: flex-end; }
+
+/* 플레이스홀더 랜덤 썸네일 고해상도 매칭 */
+.img-finance { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/180/400/250'); }
+.img-samsung-display { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/201/400/250'); }
+.img-samsung-eam { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/192/400/250'); }
+.img-samsung-elec { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/3/400/250'); }
+.img-samsung-answer { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/48/400/250'); }
+.img-commerce { background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85)), url('https://picsum.photos/id/119/400/250'); }
+
+.thumb-overlay { padding: 1rem 1.2rem; color: #fff; width: 100%; }
+.thumb-tag { font-size: 0.68rem; font-weight: 800; background: var(--accent); padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; }
+.thumb-overlay h4 { margin: 0.4rem 0 0 0; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.5px; }
+
+.thumb-body-zone { padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.thumb-title { font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem 0; color: #172b4d; }
+.thumb-text { font-size: 0.88rem; color: var(--text-light); margin: 0; line-height: 1.5; text-align: justify; }
+
+/* 하단 타임라인식 경력서 뼈대 */
+.resume-history-section { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+.history-flex-container { display: flex; flex-direction: column; gap: 2.5rem; }
+@media (min-width: 768px) { .history-flex-container { flex-direction: row; } }
+.history-column { flex: 1; }
+.history-type-title { font-size: 1.25rem; font-weight: 800; border-bottom: 2px solid #172b4d; padding-bottom: 0.5rem; margin: 0 0 1.5rem 0; color: #172b4d; }
+.history-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.8rem; }
+.history-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; font-size: 0.95rem; }
+.company-name { font-weight: 800; color: #172b4d; font-size: 1.05rem; }
+.history-date { font-size: 0.85rem; color: var(--text-light); font-weight: 600; }
+.history-role { margin: 0 0 0.4rem 0; font-size: 0.9rem; color: var(--accent); font-weight: 700; }
+.history-detail { margin: 0; font-size: 0.88rem; color: var(--text-light); line-height: 1.5; text-align: justify; }
+
+/* 경력 — 타임라인 카드 스타일 */
+.career-column { flex: 1; }
+.education-column { flex: 1; }
+@media (min-width: 768px) { .education-column { flex: 0 0 340px; } }
+.history-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+/* .history-timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), #c7d7ff);
+  border-radius: 2px;
+} */
+.history-timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+.history-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 0px;
+  bottom: -25px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.history-timeline-item:first-child::before {
+  top:15px;
+}
+.history-timeline-item:last-child::before {
+  bottom:0px;
+  height:35px;
+}
+.history-timeline-item:last-child { margin-bottom: 0; }
+.history-marker {
+  position: absolute;
+  left: -1px;
+  top: 1.1rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 3px #e8eeff;
+  z-index: 1;
+}
+.history-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 2px 12px rgba(0, 82, 204, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.history-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 18px rgba(0, 82, 204, 0.1);
+}
+.history-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.history-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--accent);
+  background: #eef3ff;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+  letter-spacing: 0.02em;
+}
+.history-period {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.history-company {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #172b4d;
+  line-height: 1.4;
+}
+.history-card .history-detail {
+  margin: 0;
+  padding-top: 0.65rem;
+  border-top: 1px dashed #e2e8f8;
+}
+
+
+
+
+/* 육각형 차트 컨테이너 스타일 */
+.skill-chart-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* SVG 기본 레이아웃 */
+.radar-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* 배경 가이드라인 스타일 (회색 육각형들) */
+.grid-line {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 1;
+}
+
+/* 축 라인 (중심에서 각 꼭짓점으로 뻗어나가는 선) */
+.axis-line {
+  stroke: #cbd5e1;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+/* 데이터가 채워지는 푸른색 영역 (바차트 색상 반영) */
+.data-area {
+  fill: rgba(29, 78, 216, 0.2); /* 투명한 블루 */
+  stroke: #1d4ed8;               /* 진한 블루 라인 */
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+/* 데이터 꼭짓점 포인트 마커 */
+.data-point {
+  fill: #ffffff;
+  stroke: #1d4ed8;
+  stroke-width: 2.5;
+  cursor: pointer;
+  transition: r 0.2s ease;
+}
+
+.data-point:hover {
+  r: 6; /* 호버 시 포인트 확대 */
+}
+
+/* 스킬 텍스트 라벨 스타일 */
+.axis-label {
+  font-size: 12px;
+  font-weight: 600;
+  fill: #334155;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* 수치 표시 (95%, 90% 등) */
+.value-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #1d4ed8;
+}
